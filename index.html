@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.95);
+        width: 90%;
+        max-width: 900px;
+        border-radius: 25px;
+        padding: 25px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    h1 {
+        color: #ff4d6d;
+    }
+
+    .pdf-list {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px 0;
+        flex-wrap: wrap;
+    }
+
+    .pdf-btn {
+        padding: 10px 18px;
+        border-radius: 25px;
+        border: none;
+        background: #ffd6e0;
+        cursor: pointer;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    .pdf-btn:hover {
+        background: #ffb3c1;
+        transform: scale(1.05);
+    }
+
+    .pdf-box {
+        width: 100%;
+        height: 420px;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 2px solid #ffb3c1;
+        margin-top: 15px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .download-btn {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 12px 22px;
+        background: #ff4d6d;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 16px;
+        box-shadow: 0 8px 20px rgba(255,77,109,0.4);
+    }
+
+    .download-btn:hover {
+        background: #e63956;
+    }
+
+    /* PASSWORD */
+    input {
+        padding: 12px;
+        width: 80%;
+        max-width: 300px;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    button.unlock {
+        margin-top: 10px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        background: #ff4d6d;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .error {
+        color: red;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- LOCK -->
+    <div id="lock">
+        <h1>🔒 Enter Password</h1>
+        <p>Special access only 💕</p>
+        <input type="password" id="password" placeholder="Enter password">
+        <br>
+        <button class="unlock" onclick="checkPass()">Unlock 💖</button>
+        <div class="error" id="error"></div>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="content" style="display:none;">
+        <h1>Choose Your Study Material 📚💖</h1>
+        <p>Pick one and focus — I believe in you 🌸</p>
+
+        <!-- PDF LIST -->
+        <div class="pdf-list">
+            <button class="pdf-btn" onclick="loadPDF('chemichal bonding.pdf')">
+                📘 Chemistry 4 Notes
+            </button>
+        </div>
+
+        <!-- PDF VIEWER -->
+        <div class="pdf-box">
+            <iframe id="viewer"></iframe>
+        </div>
+
+        <!-- DOWNLOAD -->
+        <a id="downloadLink" class="download-btn" download>
+            📥 Download Selected PDF
+        </a>
+    </div>
+
+</div>
+
+<script>
+    const correctPassword = "322"; // CHANGE PASSWORD
+    const viewer = document.getElementById("viewer");
+    const downloadLink = document.getElementById("downloadLink");
+
+    function checkPass() {
+        const userPass = document.getElementById("password").value;
+        if (userPass === correctPassword) {
+            document.getElementById("lock").style.display = "none";
+            document.getElementById("content").style.display = "block";
+            loadPDF('study1.pdf'); // auto-load first PDF
+        } else {
+            document.getElementById("error").innerText = "❌ Wrong password";
+        }
+    }
+
+    function loadPDF(file) {
+        viewer.src = file;
+        downloadLink.href = file;
+    }
+</script>
+
+</body>
+</html>
