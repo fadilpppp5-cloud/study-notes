@@ -33,55 +33,26 @@
     .pdf-list {
         display: flex;
         justify-content: center;
-        gap: 10px;
-        margin: 15px 0;
+        gap: 12px;
+        margin: 20px 0;
         flex-wrap: wrap;
     }
 
     .pdf-btn {
-        padding: 10px 18px;
+        padding: 12px 20px;
         border-radius: 25px;
-        border: none;
         background: #ffd6e0;
-        cursor: pointer;
         font-size: 15px;
+        cursor: pointer;
         transition: 0.3s;
+        text-decoration: none;
+        color: #000;
+        font-weight: 600;
     }
 
     .pdf-btn:hover {
         background: #ffb3c1;
         transform: scale(1.05);
-    }
-
-    .pdf-box {
-        width: 100%;
-        height: 420px;
-        border-radius: 15px;
-        overflow: hidden;
-        border: 2px solid #ffb3c1;
-        margin-top: 15px;
-    }
-
-    iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .download-btn {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 12px 22px;
-        background: #ff4d6d;
-        color: white;
-        text-decoration: none;
-        border-radius: 30px;
-        font-size: 16px;
-        box-shadow: 0 8px 20px rgba(255,77,109,0.4);
-    }
-
-    .download-btn:hover {
-        background: #e63956;
     }
 
     /* PASSWORD */
@@ -132,45 +103,36 @@
         <h1>Choose Your Study Material 📚💖</h1>
         <p>Pick one and focus — I believe in you 🌸</p>
 
-        <!-- PDF LIST -->
+        <!-- PDF BUTTONS -->
         <div class="pdf-list">
-            <button class="pdf-btn" onclick="loadPDF('chemichal bonding.pdf')">
-                📘 Chemistry 4 Notes
-            </button>
-        </div>
+            <a class="pdf-btn" href="chemichal bonding.pdf" target="_blank">
+                📘 Chemical Bonding
+            </a>
 
-        <!-- PDF VIEWER -->
-        <div class="pdf-box">
-            <iframe id="viewer"></iframe>
-        </div>
+            <a class="pdf-btn" href="equlibrium.pdf" target="_blank">
+                📗 equilibrium
+            </a>
 
-        <!-- DOWNLOAD -->
-        <a id="downloadLink" class="download-btn" download>
-            📥 Download Selected PDF
-        </a>
+            <a class="pdf-btn" href="organic.pdf" target="_blank">
+                📕 organic 
+            </a>
+        </div>
     </div>
 
 </div>
 
 <script>
-    const correctPassword = "322"; // CHANGE PASSWORD
-    const viewer = document.getElementById("viewer");
-    const downloadLink = document.getElementById("downloadLink");
+    const correctPassword = "322"; // change password here
 
     function checkPass() {
         const userPass = document.getElementById("password").value;
+
         if (userPass === correctPassword) {
             document.getElementById("lock").style.display = "none";
             document.getElementById("content").style.display = "block";
-            loadPDF('study1.pdf'); // auto-load first PDF
         } else {
             document.getElementById("error").innerText = "❌ Wrong password";
         }
-    }
-
-    function loadPDF(file) {
-        viewer.src = file;
-        downloadLink.href = file;
     }
 </script>
 
